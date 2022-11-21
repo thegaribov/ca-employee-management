@@ -1,6 +1,7 @@
 ﻿namespace CAEmployeeManagement.ViewModels.Employee
 {
-    public class AddViewModel
+    public class AddViewModel : BaseViewModel
     {
+
     }
 }
