@@ -32,6 +32,9 @@ namespace CAEmployeeManagement.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("EmployeeCode")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FatherName")
                         .HasColumnType("nvarchar(max)");
 

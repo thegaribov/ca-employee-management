@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CAEmployeeManagement.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221121162316_Employee")]
+    [Migration("20221121164411_Employee")]
     partial class Employee
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,6 +32,9 @@ namespace CAEmployeeManagement.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmployeeCode")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FatherName")
