@@ -7,16 +7,23 @@
             <th scope="col">First</th>
             <th scope="col">Last</th>
             <th scope="col">Handle</th>
+            <th scope="col">
+                <a asp-controller="employee" asp-action="add" class="btn btn-primary">Add new employee</a>
+            </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var employee in Model)
         {
             <tr>
-                <th scope="row">1</th>
+                <th scope="row">@employee.EmployeeCode</th>
                 <td>@employee.Name</td>
                 <td>@employee.LastName</td>
                 <td>@employee.FatherName</td>
+                <td>
+                    <a asp-controller="employee" asp-action="update" asp-route-employeeCode="@employee.EmployeeCode" class="btn btn-secondary">Edit</a>
+                    <a asp-controller="employee" asp-action="delete" asp-route-employeeCode="@employee.EmployeeCode" class="btn btn-danger">Delete</a>
+                </td>
             </tr>
         }
     </tbody>
