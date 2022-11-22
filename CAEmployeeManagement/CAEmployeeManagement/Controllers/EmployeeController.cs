@@ -118,6 +118,23 @@ namespace CAEmployeeManagement.Controllers
             return RedirectToAction(nameof(List));
         }
 
+        [HttpPost("Employee/Delete/{employeeCode}")]
+        public IActionResult Delete([FromRoute] string employeeCode)
+        {
+            var employee = _dataContext.Employees.FirstOrDefault(e => e.EmployeeCode == employeeCode && !e.IsDeleted);
+            if (employee is null)
+            {
+                return NotFound();
+            }
+
+            employee.IsDeleted = true;
+
+            _dataContext.Update(employee);
+            _dataContext.SaveChanges();
+
+            return RedirectToAction(nameof(List));
+        }
+
         #endregion
     }
 }

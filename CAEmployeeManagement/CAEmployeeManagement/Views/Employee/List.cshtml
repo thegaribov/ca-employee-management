@@ -22,9 +22,15 @@
                 <td>@employee.FatherName</td>
                 <td>
                     <a asp-controller="employee" asp-action="update" asp-route-employeeCode="@employee.EmployeeCode" class="btn btn-secondary">Edit</a>
-                    <a asp-controller="employee" asp-action="delete" asp-route-employeeCode="@employee.EmployeeCode" class="btn btn-danger">Delete</a>
+                    <form method="POST" asp-controller="employee" asp-action="delete" asp-route-employeeCode="@employee.EmployeeCode" class="d-none" id="employee-delete-form-@employee.EmployeeCode">
+                    </form>
+                    <button type="submit" form="employee-delete-form-@employee.EmployeeCode" class="btn btn-danger">
+                        Delete
+                    </button>
                 </td>
             </tr>
         }
     </tbody>
+
 </table>
+
