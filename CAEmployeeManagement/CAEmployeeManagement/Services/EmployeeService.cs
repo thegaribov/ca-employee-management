@@ -5,19 +5,14 @@ namespace CAEmployeeManagement.Services
 {
     public class EmployeeService
     {
-        private readonly DataContext _dataContext;
+        public readonly DataContext _dataContext;
         private const string EMPLOYEE_CODE_PREFIX = "E";
         private const int EMPLOYEE_CODE_MIN_RANGE = 10000;
         private const int EMPLOYEE_CODE_MAX_RANGE = 100000;
 
-        public EmployeeService()
+        public EmployeeService(DataContext dataContext)
         {
-            _dataContext = new DataContext(); //buradan eliyende usingi vere bilmirik
-        }
-
-        ~EmployeeService()
-        {
-            _dataContext.Dispose();
+            _dataContext = dataContext; 
         }
 
         public string GetEmployeeCode()

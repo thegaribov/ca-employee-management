@@ -5,10 +5,12 @@ namespace CAEmployeeManagement.Database.Contexts
 {
     public class DataContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public DataContext(DbContextOptions options)
+            : base(options)
         {
-            optionsBuilder.UseSqlServer("Server=MAHMOOD-PC;Database=CodeAcademy;Trusted_Connection=True;TrustServerCertificate=True;");
+           
         }
+
 
         public DbSet<Employee> Employees { get; set; }
     }

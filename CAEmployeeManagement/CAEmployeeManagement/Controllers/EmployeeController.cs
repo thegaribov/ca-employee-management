@@ -15,15 +15,12 @@ namespace CAEmployeeManagement.Controllers
         private readonly DataContext _dataContext;
         private readonly EmployeeService _employeeService;
 
-        public EmployeeController()
-        {
-            _dataContext = new DataContext(); //buradan eliyende usingi vere bilmirik
-            _employeeService = new EmployeeService();
-        }
 
-        ~EmployeeController()
+        //Loosely coupled
+        public EmployeeController(DataContext dataContext, EmployeeService employeeService)
         {
-            _dataContext.Dispose();
+            _dataContext = dataContext;
+            _employeeService = employeeService;
         }
 
         #region List
@@ -94,7 +91,7 @@ namespace CAEmployeeManagement.Controllers
                 EmployeeCode = employee.EmployeeCode
             });
         }
-        
+
         [HttpPost("Employee/Update/{employeeCode}")]
         public IActionResult Update([FromRoute] string employeeCode, [FromForm] UpdateViewModel model)
         {
