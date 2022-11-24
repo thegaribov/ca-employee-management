@@ -1,9 +1,10 @@
 ﻿using CAEmployeeManagement.Database.Contexts;
+using CAEmployeeManagement.Services.Abstracts;
 using System;
 
-namespace CAEmployeeManagement.Services
+namespace CAEmployeeManagement.Services.Concretes
 {
-    public class EmployeeService
+    public class EmployeeService : IEmployeeService
     {
         public readonly DataContext _dataContext;
         private const string EMPLOYEE_CODE_PREFIX = "E";
@@ -12,7 +13,7 @@ namespace CAEmployeeManagement.Services
 
         public EmployeeService(DataContext dataContext)
         {
-            _dataContext = dataContext; 
+            _dataContext = dataContext;
         }
 
         public string GetEmployeeCode()

@@ -1,26 +1,30 @@
 ﻿using CAEmployeeManagement.Database.Contexts;
 using CAEmployeeManagement.Database.Models;
 using CAEmployeeManagement.Migrations;
-using CAEmployeeManagement.Services;
 using CAEmployeeManagement.ViewModels.Employee;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Xml.Linq;
 using System.Net.NetworkInformation;
+using CAEmployeeManagement.Services.Concretes;
+using CAEmployeeManagement.Services.Concretes.Email;
+using CAEmployeeManagement.Services.Abstracts;
 
 namespace CAEmployeeManagement.Controllers
 {
     public class EmployeeController : Controller
     {
         private readonly DataContext _dataContext;
-        private readonly EmployeeService _employeeService;
+        private readonly IEmployeeService _employeeService;
+        private readonly IEmailService _emailService;
 
 
         //Loosely coupled
-        public EmployeeController(DataContext dataContext, EmployeeService employeeService)
+        public EmployeeController(DataContext dataContext, IEmployeeService employeeService, IEmailService emailService)
         {
             _dataContext = dataContext;
             _employeeService = employeeService;
+            _emailService = emailService;
         }
 
         #region List
@@ -64,6 +68,8 @@ namespace CAEmployeeManagement.Controllers
 
             _dataContext.Employees.Add(employee);
             _dataContext.SaveChanges();
+
+            _emailService.SendIndividual("qaribovmahmud@gmail.com", "....", "Item added");
 
             return RedirectToAction(nameof(List));
         }

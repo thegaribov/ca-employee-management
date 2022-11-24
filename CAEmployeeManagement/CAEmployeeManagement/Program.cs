@@ -1,5 +1,7 @@
 using CAEmployeeManagement.Database.Contexts;
-using CAEmployeeManagement.Services;
+using CAEmployeeManagement.Services.Abstracts;
+using CAEmployeeManagement.Services.Concretes;
+using CAEmployeeManagement.Services.Concretes.Email;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -23,7 +25,8 @@ namespace CAEmployeeManagement
                 {
                     o.UseSqlServer("Server=MAHMOOD-PC;Database=CodeAcademy;Trusted_Connection=True;TrustServerCertificate=True;");
                 }, ServiceLifetime.Transient)
-                .AddScoped<EmployeeService>()
+                .AddScoped<IEmailService, SMTP>()
+                .AddScoped<IEmployeeService, EmployeeService>()
                 .AddMvc()
                 .AddRazorRuntimeCompilation();
 
